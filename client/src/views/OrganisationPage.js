@@ -50,15 +50,18 @@ const OrganisationPage = () => {
           </tr>
         </thead>
         <tbody>
-          {data?.map((record) => (
-            <tr key={record._id}>
-              <td>{record.organisationName}</td>
-              <td>{record.email}</td>
-              <td>{record.phone}</td>
-              <td>{record.address}</td>
-              <td>{moment(record.createdAt).format("DD/MM/YYYY hh:mm A")}</td>
-            </tr>
-          ))}
+        {data?.map((record) => (
+  record.organisationName ? (
+    <tr key={record._id}>
+      <td>{record.organisationName}</td>
+      <td>{record.email}</td>
+      <td>{record.phone}</td>
+      <td>{record.address}</td>
+      <td>{moment(record.createdAt).format("DD/MM/YYYY hh:mm A")}</td>
+    </tr>
+  ) : null
+))}
+
         </tbody>
         </Table>
     </Layout>

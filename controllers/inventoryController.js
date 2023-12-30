@@ -222,11 +222,12 @@ const getDonorsListController = async (req, res) => {
 // get organisations list for donor
 const getOrganisationListForDonorController = async (req, res) => {
   try {
-    const donor = req.body.userId;
-    const orgId = await inventoryModel.distinct("organisation", { donor });
+    const donorid = req.body.userId;
+    const orgId = await inventoryModel.distinct("organisation", { donor: donorid });
     const organisations = await userModel.find({
       _id: { $in: orgId },
     });
+    console.log(organisations);
     return res.status(200).send({
       success: true,
       message: "Organisations list Fetched Successfully",
@@ -246,11 +247,12 @@ const getOrganisationListForDonorController = async (req, res) => {
 //get organisation list for hospital
 const getOrganisationForHospitalController = async (req, res) => {
   try {
-    const hospitalid = req.body.userId;
-    const orgId = await inventoryModel.distinct("organisation", { hospitalid });
+    const hospitalId = req.body.userId;
+    const orgId = await inventoryModel.distinct("organisation", { hospital: hospitalId });
     const organisations = await userModel.find({
       _id: { $in: orgId },
     });
+    console.log(organisations);
     return res.status(200).send({
       success: true,
       message: "organisations for hospital fetched",
